@@ -1,4 +1,6 @@
-﻿ internal class LocalFileLogger<T> : ILogger
+﻿namespace Generic
+{
+    internal class LocalFileLogger<T> : ILogger
     {
         private readonly string _path;
         internal LocalFileLogger(string path)
@@ -12,7 +14,7 @@
         }
         public void LogInfo(string message)
         {
-            WriteToFile($"[Info]: [{typeof(T).Name}] : {message}"); 
+            WriteToFile($"[Info]: [{typeof(T).Name}] : {message}");
         }
         public void LogWarning(string message)
         {
@@ -20,9 +22,10 @@
         }
         void WriteToFile(string line)
         {
-             using (StreamWriter writer = new StreamWriter(_path, true))
-             {
+            using (StreamWriter writer = new StreamWriter(_path, true))
+            {
                 writer.WriteLine(line);
-             }
+            }
         }
+    }
 }
